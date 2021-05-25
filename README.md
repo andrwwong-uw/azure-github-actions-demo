@@ -1,4 +1,4 @@
-# ML Ops with GitHub Actions and AML
+#  ML Ops with GitHub Actions and AML
 
 <p align="center">
   <img src="docs/images/aml.png" height="80"/>
