@@ -34,7 +34,7 @@ jobs:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: comment PR
-      uses: unsplash/comment-on-pr@master
+      uses: peter-evans/commit-comment@v1 # unsplash/comment-on-pr@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -50,7 +50,7 @@ jobs:
           experiment_name: ${{ steps.aml_run.outputs.experiment_name }}
 
     - name: comment PR
-      uses: unsplash/comment-on-pr@master
+      uses: peter-evans/commit-comment@v1 # unsplash/comment-on-pr@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
