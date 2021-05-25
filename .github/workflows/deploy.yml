@@ -4,9 +4,9 @@ on:
   #repository_dispatch:
   #  types: [deploy-command]
   
-  # only deploy if training was completed
+  # Only deploy if training workflow was completed
   workflow_run:
-    workflows: ["train"]
+    workflows: ["aml-train"]
     types:
       - completed
 
