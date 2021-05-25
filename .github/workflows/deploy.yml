@@ -1,8 +1,9 @@
 name: aml-deploy
 
 on:
-  repository_dispatch:
-    types: [deploy-command]
+  [push]
+  #repository_dispatch:
+  #  types: [deploy-command]
 
 jobs:
   deploy:
