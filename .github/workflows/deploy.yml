@@ -1,9 +1,14 @@
 name: aml-deploy
 
 on:
-  [push]
   #repository_dispatch:
   #  types: [deploy-command]
+  
+  # only deploy if training was completed
+  workflow_run:
+    workflows: ["train"]
+    types:
+      - completed
 
 jobs:
   deploy:
