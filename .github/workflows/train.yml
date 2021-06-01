@@ -33,6 +33,8 @@ jobs:
       with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
 
+    # Commenting as currently workflow runs on github push, not on a pull request or issue comment
+    # Therefore, comment instead on commit
     #- name: comment PR
     #  uses: unsplash/comment-on-pr@master
     #  env:
@@ -40,7 +42,7 @@ jobs:
     #  with:
     #    msg: "${{ steps.aml_run.outputs.run_metrics }}"
     
-    - name: Comment Commit
+    - name: Create comment on commit
       uses: peter-evans/commit-comment@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -55,13 +57,15 @@ jobs:
           run_id:  ${{ steps.aml_run.outputs.run_id }}
           experiment_name: ${{ steps.aml_run.outputs.experiment_name }}
           
+    # Commenting as currently workflow runs on github push, not on a pull request or issue comment
+    # Therefore, comment instead on commit
     #- name: comment PR
     #  uses: unsplash/comment-on-pr@master
     #  env:
     #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     #  with:
     #    msg: "${{ steps.aml_registermodel.outputs.model_id }}"
-    - name: Comment Commit
+    - name: Create comment on commit
       uses: peter-evans/commit-comment@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
