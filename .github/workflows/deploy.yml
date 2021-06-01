@@ -14,7 +14,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      
+      # Commenting as currently workflow runs on github push, not on a pull request or issue comment
       #- name: Check variables
       #  env:
       #    PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload.slash_command) }}
@@ -31,6 +31,8 @@ jobs:
         id: vars
         run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
 
+      # Commenting as currently workflow runs on github push, not on a pull request or issue comment
+      # Therefore, comment instead on commit
       #- name: Create comment
       #  uses: peter-evans/create-or-update-comment@v1
       #  with:
@@ -39,6 +41,7 @@ jobs:
       #    body: |
       #      @${{ github.event.client_payload.github.actor }} Just submit a deploy request.
       #      [Click here to see the deploy run output](${{ steps.vars.outputs.run-url }})
+      
       - name: Create comment
         uses: peter-evans/commit-comment@v1
         with:
@@ -94,6 +97,8 @@ jobs:
             model_version: ${{ github.event.client_payload.slash_command.model_version }}
             parameters_file: "prod_aks.json"
 
+      # Commenting as currently workflow runs on github push, not on a pull request or issue comment
+      # Therefore, comment instead on commit
       #- name: Create comment
       #  uses: peter-evans/create-or-update-comment@v1
       #  with:
