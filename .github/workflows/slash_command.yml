@@ -6,6 +6,7 @@ on:
 
 jobs:
   # This is the dispatch for slash commands in the repo
+  # Only triggers on pull request comments
   slash_command:
     runs-on: ubuntu-latest
     steps:
