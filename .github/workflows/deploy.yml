@@ -31,14 +31,21 @@ jobs:
         id: vars
         run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
 
+      #- name: Create comment
+      #  uses: peter-evans/create-or-update-comment@v1
+      #  with:
+      #    token: ${{ secrets.GITHUB_TOKEN }}
+      #    issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
+      #    body: |
+      #      @${{ github.event.client_payload.github.actor }} Just submit a deploy request.
+      #      [Click here to see the deploy run output](${{ steps.vars.outputs.run-url }})
       - name: Create comment
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/commit-comment@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
-          body: |
-            @${{ github.event.client_payload.github.actor }} Just submit a deploy request.
-            [Click here to see the deploy run output](${{ steps.vars.outputs.run-url }})
+            token: ${{ secrets.GITHUB_TOKEN }}
+            body:  |
+              @${{ github.event.client_payload.github.actor }} Just submit a deploy request.
+              [Click here to see the deploy run output](${{ steps.vars.outputs.run-url }})
 
       # Connect or Create the Azure Machine Learning Workspace
       - name: Connect/Create Azure Machine Learning Workspace
@@ -87,11 +94,18 @@ jobs:
             model_version: ${{ github.event.client_payload.slash_command.model_version }}
             parameters_file: "prod_aks.json"
 
+      #- name: Create comment
+      #  uses: peter-evans/create-or-update-comment@v1
+      #  with:
+      #    token: ${{ secrets.GITHUB_TOKEN }}
+      #    issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
+      #    body: |
+      #      scoring-endpoint: ${{ steps.aml_prod_deploy.outputs.service_scoring_uri}}
+      #      swagger-uri: ${{ steps.aml_prod_deploy.outputs.service_swagger_uri}}
       - name: Create comment
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/commit-comment@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
-          body: |
-            scoring-endpoint: ${{ steps.aml_prod_deploy.outputs.service_scoring_uri}}
-            swagger-uri: ${{ steps.aml_prod_deploy.outputs.service_swagger_uri}}
+            token: ${{ secrets.GITHUB_TOKEN }}
+            body:  |
+              scoring-endpoint: ${{ steps.aml_prod_deploy.outputs.service_scoring_uri}}
+              swagger-uri: ${{ steps.aml_prod_deploy.outputs.service_swagger_uri}}
