@@ -14,12 +14,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Check variables
-        env:
-          PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload.slash_command) }}
-        run: |
-          if [ -z "${{ github.event.client_payload.slash_command.model_name }}"]; then echo "model_name is NULL"; exit 1; else echo "model_name is ${{ toJson(github.event.client_payload.slash_command.model_name) }}"; fi;
-          if [ -z "${{ github.event.client_payload.slash_command.model_version }}"]; then echo "model_version is NULL"; exit 1; else echo "model_version is ${{ toJson(github.event.client_payload.slash_command.model_version) }}"; fi;
+      
+      #- name: Check variables
+      #  env:
+      #    PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload.slash_command) }}
+      #  run: |
+      #    if [ -z "${{ github.event.client_payload.slash_command.model_name }}"]; then echo "model_name is NULL"; exit 1; else echo "model_name is ${{ toJson(github.event.client_payload.slash_command.model_name) }}"; fi;
+      #    if [ -z "${{ github.event.client_payload.slash_command.model_version }}"]; then echo "model_version is NULL"; exit 1; else echo "model_version is ${{ toJson(github.event.client_payload.slash_command.model_version) }}"; fi;
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Check Out Repository
